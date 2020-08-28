@@ -6,6 +6,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class AuthenticationHandlerConfig implements AuthenticationEventPublisher {
 
@@ -13,12 +16,12 @@ public class AuthenticationHandlerConfig implements AuthenticationEventPublisher
 	public void publishAuthenticationSuccess(Authentication authentication) {
 		 UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		 String userName = userDetails.getUsername();
-		 System.out.println(String.format("Autenticación correcta con user: %s", userName));
+		 log.info("Autenticación correcta con user: {}", userName);
 	}
 
 	@Override
 	public void publishAuthenticationFailure(AuthenticationException exception, Authentication authentication) {
-		System.out.println(String.format("Error en la autenticación: %s", exception.getMessage()));
+		log.error("Error en la autenticación: {}", exception.getMessage());
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.rahdevelopers.api.oauth.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import lombok.Data;
@@ -16,5 +17,7 @@ public class UsuarioDto {
 	private String nombre;
 	private String apellidos;
 	private String email;
+	private LocalDate birthDate;
+
 	private List<RoleDto> roles;
 }
